@@ -6,16 +6,15 @@ PIR_PIN = 4
 GPIO.setup(PIR_PIN, GPIO.IN)
 
 def MOTION(PIR_PIN):
-               print “Motion Detected!”
+    print("Motion detected!")
 
-print “PIR Module Test (CTRL+C to exit)”
+print("PIR test. Use ctrl +c to stop")
 time.sleep(2)
-print “Ready”
-
+print("Ready")
 try:
                GPIO.add_event_detect(PIR_PIN, GPIO.RISING, callback=MOTION)
                while 1:
                               time.sleep(100)
 except KeyboardInterrupt:
-               print “ Quit”
-               GPIO.cleanup()
+                print("Quit")
+                GPIO.cleanup()
