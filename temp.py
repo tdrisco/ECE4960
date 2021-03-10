@@ -12,9 +12,9 @@ GPIO.setup(DHT_PIN, GPIO.IN)
 
 dhtDevice = adafruit_dht.DHT22(DHT_PIN)
 
-print("PIR test. Use ctrl +c to stop")
+print("Temperature Sensor test. Use ctrl +c to stop")
 time.sleep(2)
-print("Ready")
+print("Ready\n")
 
 while True:
     try:
@@ -24,6 +24,9 @@ while True:
         humidity = dhtDevice.humidity #get humidity value
         print("Temp: {:.1f} F / {:.1f} C    Humidity: {}% ".format(temperature_f, temperature_c, humidity))
 
+    except KeyboardInterrupt:
+                    print("Quit")
+                    GPIO.cleanup()
     except RuntimeError as error: #How to handle inevitable errors
         # Errors happen fairly often, DHT's are hard to read, just keep going
         print(error.args[0])
@@ -32,8 +35,6 @@ while True:
     except Exception as error:
         dhtDevice.exit()
         raise error
-    except KeyboardInterrupt:
-                    print("Quit")
-                    GPIO.cleanup()
+
 
     time.sleep(2.0)
