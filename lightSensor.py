@@ -16,7 +16,7 @@ print("Ready")
 
 try:
 
-    GPIO.add_event_detect(PIN, GPIO.BOTH, GPIO.RISING, callback=LIGHT)  # let us know when the pin goes HIGH or LOW
+    GPIO.add_event_detect(PIN, GPIO.RISING, callback=LIGHT)  # let us know when the pin goes HIGH or LOW
     # infinite loop
     while True:
             time.sleep(1)
