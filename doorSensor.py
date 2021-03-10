@@ -18,7 +18,7 @@ try:
                 print("Door is OPENED")
                 time.sleep(1)
             else:
-                print("Door is CLOSES")
+                print("Door is CLOSED")
                 time.sleep(1);
 
 except KeyboardInterrupt:
