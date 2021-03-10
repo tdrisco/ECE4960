@@ -20,10 +20,10 @@ try:
     # infinite loop
     while True:
             if GPIO.input(PIN):
-                print("Light On \u263e")
+                print("Light OFF \u263e")
                 time.sleep(1)
             else:
-                print("Light Off \u263c")
+                print("Light ON \u263c")
                 time.sleep(1);
 
 except KeyboardInterrupt:
