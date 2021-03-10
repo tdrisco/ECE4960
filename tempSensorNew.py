@@ -1,7 +1,8 @@
 import adafruit_dht
 
-DHT_SENSOR = Adafruit_DHT.DHT22
 DHT_PIN = 17;
+DHT_SENSOR = Adafruit_DHT.DHT22
+
 
 
 
@@ -14,4 +15,3 @@ while True:
     else:
         print("Sensor Failed, was not able to retrieve data")
 
-    time.sleep(3);
