@@ -9,11 +9,11 @@ GPIO.setup(PIN, GPIO.IN)
 
 def NOISE(PIN):
         if GPIO.input(PIN):
-                print "Sound Detected!"
+                print("Sound Detected!")
         else:
-                print "Sound Detected!"
+                print("Sound Detected!")
 
-print("PIR test. Use ctrl +c to stop")
+print("Sound Sensor Test. Use ctrl +c to stop")
 time.sleep(2)
 print("Ready")
 
