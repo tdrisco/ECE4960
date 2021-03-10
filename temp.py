@@ -27,11 +27,11 @@ while True:
     except KeyboardInterrupt:
                     print("Quit")
                     GPIO.cleanup()
-    except RuntimeError as error: #How to handle inevitable errors
+    #except RuntimeError as error: #How to handle inevitable errors
         # Errors happen fairly often, DHT's are hard to read, just keep going
-        print(error.args[0])
-        time.sleep(2.0)
-        continue
+        #print(error.args[0])
+        #time.sleep(2.0)
+        #continue
     except Exception as error:
         dhtDevice.exit()
         raise error
