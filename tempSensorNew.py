@@ -1,4 +1,4 @@
-import Adafruit_DHT
+import adafruit_dht
 
 DHT_SENSOR = Adafruit_DHT.DHT22
 DHT_PIN = 17;
@@ -13,5 +13,5 @@ while True:
         print("Temp={0:0.1f}C   Humidity={1:0.1f}%".format(temperature, humidity))
     else:
         print("Sensor Failed, was not able to retrieve data")
-        
+
     time.sleep(3);
