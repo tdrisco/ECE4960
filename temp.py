@@ -1,31 +1,30 @@
-# SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
-# SPDX-License-Identifier: MIT
 
 import time
-import board
+#import board
 import adafruit_dht
 
-# Initial the dht device, with data pin connected to:
-dhtDevice = adafruit_dht.DHT22(board.D17)
+import RPi.GPIO as GPIO
 
-# you can pass DHT22 use_pulseio=False if you wouldn't like to use pulseio.
-# This may be necessary on a Linux single board computer like the Raspberry Pi,
-# but it will not work in CircuitPython.
-# dhtDevice = adafruit_dht.DHT22(board.D18, use_pulseio=False)
+# Initial the dht device, with data pin connected to:
+GPIO.setmode(GPIO.BCM)
+DHT_PIN = 17
+GPIO.setup(DHT_PIN, GPIO.IN)
+
+dhtDevice = adafruit_dht.DHT22(DHT_PIN)
+
+print("PIR test. Use ctrl +c to stop")
+time.sleep(2)
+print("Ready")
 
 while True:
     try:
         # Print the values to the serial port
-        temperature_c = dhtDevice.temperature
-        temperature_f = temperature_c * (9 / 5) + 32
-        humidity = dhtDevice.humidity
-        print(
-            "Temp: {:.1f} F / {:.1f} C    Humidity: {}% ".format(
-                temperature_f, temperature_c, humidity
-            )
-        )
+        temperature_c = dhtDevice.temperature #get temperature value
+        temperature_f = temperature_c * (9 / 5) + 32 #convert to farenhiet
+        humidity = dhtDevice.humidity #get humidity value
+        print("Temp: {:.1f} F / {:.1f} C    Humidity: {}% ".format(temperature_f, temperature_c, humidity))
 
-    except RuntimeError as error:
+    except RuntimeError as error: #How to handle inevitable errors
         # Errors happen fairly often, DHT's are hard to read, just keep going
         print(error.args[0])
         time.sleep(2.0)
@@ -33,5 +32,8 @@ while True:
     except Exception as error:
         dhtDevice.exit()
         raise error
+    except KeyboardInterrupt:
+                    print("Quit")
+                    GPIO.cleanup()
 
     time.sleep(2.0)
