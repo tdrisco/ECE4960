@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>Captured Photos</title>
+    </head>
+    <body>
+    <button onclick="window.location.href='/';">Home</button>
+    <br/>
+    <br/>
+  {% for image in images %}
+      {{ image }}: <br/><img src="{{ url_for('static', filename='images/' + image) }}"><br/></br>
+  {% endfor %}
+    </body>
+    <script>
+    
+    </script>
+</html>

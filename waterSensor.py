@@ -41,15 +41,15 @@ try:
         print('Voltage (mV): {}'.format(voltage))
         print('Data        : {}\n'.format(channeldata))
 
-        if voltage < 50:
+        if voltage < 180:
             # Green
-            print("No Water.")
-        elif voltage < 1800:
+            print("No Water Detected")
+        elif voltage < 330:
             # Yellow
-            print("Water detected.")
+            print("Water is Being Detected")
         else:
             # Red
-            print("A lot of water detected")
+            print("1.5 inches of Standing Water Detected")
         sleep(2)
 finally:                # run on exit
     spi.close()         # clean up

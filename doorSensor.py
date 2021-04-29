@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 
 #GPIO SETUP
-PIN = 10
+PIN = 2
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(PIN, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 

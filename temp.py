@@ -7,8 +7,9 @@ import RPi.GPIO as GPIO
 
 # Initial the dht device, with data pin connected to:
 GPIO.setmode(GPIO.BCM)
-DHT_PIN = 17
-GPIO.setup(DHT_PIN, GPIO.IN)
+DHT_PIN = 3
+#GPIO.setup(DHT_PIN, GPIO.IN)
+#dhtDevice = adafruit_dht.DHT22(DHT_PIN, use_pulseio=False)
 
 dhtDevice = adafruit_dht.DHT22(DHT_PIN)
 
@@ -28,14 +29,14 @@ while True:
                     print("Quit")
                     dhtDevice.exit()
                     GPIO.cleanup()
-    #except RuntimeError as error: #How to handle inevitable errors
+    except RuntimeError as error: #How to handle inevitable errors
         # Errors happen fairly often, DHT's are hard to read, just keep going
-        #print(error.args[0])
-        #time.sleep(2.0)
-        #continue
-    #except Exception as error:
-        #dhtDevice.exit()
-        #raise error
+        print(error.args[0])
+        time.sleep(2.0)
+        continue
+    except Exception as error:
+        dhtDevice.exit()
+        raise error
 
 
     time.sleep(2.0)

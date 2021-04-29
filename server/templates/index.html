@@ -1,0 +1,171 @@
+<!doctype html>
+<title>Home Monitoring</title>
+<style>
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+body {
+    background-color: RGBA(200, 218, 230, .1)
+}
+
+h1 {
+    font-family: 'Lato', sans-serif;
+}
+
+h3 {
+font-family: 'Lato', sans-serif;
+}
+
+.weather-wrapper {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.weather-card {
+    margin:  20px 5px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    width: 270px;
+    height: 170px;
+    background-color: white;
+    box-shadow: 0px 0px 25px 1px rgba(50, 50, 50, 0.1);
+}
+
+.weather-card p {
+        position: absolute;
+        font-family: 'Lato', sans-serif;
+        font-weight:300;
+        font-size:28px;
+        color: lighten(#B8B8B8, 10%);
+        bottom: 0px;
+        left: 35px;
+    }
+
+.weather-card h1 {
+        font-family: 'Lato', sans-serif;
+        position: absolute;
+        font-weight:300;
+        font-size:80px;
+        color: #B8B8B8;
+        bottom: 0;
+        left: 35px;
+    }
+
+
+</style>
+<body>
+    <h1>EE7 Home Monitoring System</h1>
+    <button onclick="window.location.href='{{ url_for( 'video') }}';">View Camera Feed</button>
+    <br/>
+    <div style="display: inline-block">
+    <h3 id="mode">Mode: </h3>
+    <label class="switch">
+  <input type="checkbox" id="modecheck">
+  <span class="slider round"></span>
+</label>
+<br/>
+<br/>
+<button onclick="window.location.href='{{ url_for( 'photos') }}';">View Motion Capture Pictures</button>
+    <br/>
+</div>
+    <div class="weather-wrapper">
+    <div class="weather-card">
+        <h1 id="pinstatus"></h1>
+        <p>Temperature</p>
+    </div>
+    <div class="weather-card">
+        <h1 id="humidity"></h1>
+        <p>Humidity</p>
+    </div>
+    <div class="weather-card">
+        <h1 id="light"></h1>
+        <p>Light is</p>
+    </div>
+    <div class="weather-card">
+        <h1 id="door" style="font-size:40px; bottom: 40px;"></h1>
+        <p>Door is</p>
+    </div>
+    <div class="weather-card">
+        <h1 id="motion"></h1>
+        <p>Motion detected</p>
+    </div>
+    <div class="weather-card">
+        <h1 id="water"></h1>
+        <p>Water detected</p>
+    </div>
+    <div class="weather-card">
+        <h1 id="sound"></h1>
+        <p>Sound detected</p>
+    </div>
+    <div class="weather-card">
+        <h1 id="flame"></h1>
+        <p>Flame detected</p>
+    </div>
+
+    </div>
+</body>
+<script type="text/javascript" src="{{ url_for('static', filename = 'index.js') }}"></script>
